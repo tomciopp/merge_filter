@@ -22,7 +22,7 @@ module MergeFilter
     def filter_by column, &block
       define_method column do |*args|
         if block_given?
-          yield args, default_scope
+          yield filter.fetch(column), default_scope
         else
           default_scope.where(column => args)
         end
